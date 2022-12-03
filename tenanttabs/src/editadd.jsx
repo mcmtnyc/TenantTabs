@@ -20,8 +20,28 @@ function EditAdd() {
     fetchAllBuildings()
   }, [])
 
+    // Fetch Floor data By building
+    const [floorrs, setFloors] = useState([])
+    useEffect(() => {
+      const fetchAllFloors = async () => {
+        try {
+          const res = await axios.get('http://localhost:3001/apartments')
+          setFloors(res.data)
+          console.log(res.data)
+        }
+        catch(err) {
+          console.log(err)
+        }
+      }
+      fetchAllFloors()
+    }, [])
+
   return (
     <div className="EditAdd">
+
+    {/* Assign Tenant to Room*/}
+    {/* Add SQL logic on send*/}
+
 
     {/* Add Building by entering form*/}
     {/* Add SQL logic on send */}
@@ -40,52 +60,23 @@ ADD BUILDING
 <form>
   <label>
 ADD FLOOR TO BUILDING
+</label>
     <select name="buildings" required>
       <option value="" disabled selected hidden>Choose a building</option>
       {buildings.map((building) =>
-      <option key={building.id} value={building.name}>{building.name}</option>
+      <option key={building.id} value={building.id}>{building.name}</option>
       )}
-      {/*query from SQL for buildings*/}
+      {/*Populate options from buildings, set value to selected Building*/}
     </select>
-    <input type="number" name="flnumber"/>
-  </label>
+  <input type="number" name="flnumber" placeholder='Input Floor #'/>
   <input type="submit" value="Submit" />
 </form>
+<div className='resultDiv'></div>
 
 
     {/* Add Apt by selecting Building and Floor */}
     {/* Add SQL logic to selection */}
     {/* Add SQL logic on send */}
-<form>
-
-
-    {/* Add Apt by selecting Building and Floor */}
-    {/* Add SQL logic to selection */}
-  <label>
-ADD Apt
-    {/* select Building */}
-    <select name="buildings" required>
-      <option value="" disabled selected hidden>Choose a building</option>
-      <option value="coffee">Coffee</option>
-      <option value="tea">Tea</option>
-      <option value="milk">Milk</option>
-      {/*query from SQL for buildings*/}
-    </select>
-
-    {/* select Floor */}
-    <select name="floors" required>
-      <option value="" disabled selected hidden>Choose a building</option>
-      <option value="coffee">Coffee</option>
-      <option value="tea">Tea</option>
-      <option value="milk">Milk</option>
-      {/*query from SQL for floors in selected building*/}
-    </select>
-
-    <input type="number" name="rmnumber" />
-    <input type="text" name="occupyingtenant" />
-  </label>
-  <input type="submit" value="Submit" />
-</form>
 
 
     {/* Add Tenant by selecting Building and Floor and Apt */}

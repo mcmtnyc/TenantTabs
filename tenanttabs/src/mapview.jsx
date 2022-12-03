@@ -27,7 +27,6 @@ function MapView() {
       try {
         const res = await axios.get('http://localhost:3001/buildings')
         setBuildings(res.data)
-        console.log(res.data)
       }
       catch(err) {
         console.log(err)

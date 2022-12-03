@@ -7,29 +7,15 @@ import MapView from './mapview';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import cors from 'cors'
+import AddApt from "./AddApt";
 
 function App() {
-  // Fetch Building data
-  const [buildings, setBuildings] = useState([])
-  useEffect(() => {
-    const fetchAllBuildings = async () => {
-      try {
-        const res = await axios.get('http://localhost:3001/buildings')
-        setBuildings(res.data)
-        console.log(res.data)
-      }
-      catch(err) {
-        console.log(err)
-      }
-    }
-    fetchAllBuildings()
-  }, [])
   
   return (
     <div className="App">
 
       <Login/>
-
+      <AddApt/>
       <br/>
       <br/>
       <EditAdd/>
