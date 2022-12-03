@@ -5,23 +5,17 @@ import './App.css';
 
 
 function MapView() {
+const [buildings, setBuildings] = useState([])
+const [floors, setFloors] = useState([])
+const [apartments, setApartments] = useState([])
+const [tenants, setTenants] = useState([])
+const [selectedTenant, setSelectedTenant] = useState([])
+const [selectedApartment, setSelectedApartment] = useState([])
+const [selectedFloor, setSelectedFloor] = useState([])
+const [selectedBuilding, setSelectedBuilding] = useState([])
 
-// Fetch Tenant data
-  const [tenants, setTenants] = useState([])
-  useEffect(() => {
-    const fetchAllTenants = async () => {
-      try {
-        const res = await axios.get('http://localhost:3001/tenants')
-        setTenants(res.data)
-      }
-      catch(err) {
-        console.log(err)
-      }
-    }
-    fetchAllTenants()
-  }, [])
+
   // Fetch Building data
-  const [buildings, setBuildings] = useState([])
   useEffect(() => {
     const fetchAllBuildings = async () => {
       try {
@@ -34,64 +28,108 @@ function MapView() {
     }
     fetchAllBuildings()
   }, [])
-// Fetch Floors data
-const [floors, setFloors] = useState([])
-useEffect(() => {
-  const fetchAllFloors = async () => {
-    try {
-      const res = await axios.get('http://localhost:3001/floors')
-      setFloors(res.data)
-    }
-    catch(err) {
-      console.log(err)
-    }
-  }
-  fetchAllFloors()
-}, [])
-// Fetch Apartment data
-const [apartments, setApartments] = useState([])
-useEffect(() => {
-  const fetchAllApartments = async () => {
-    try {
-      const res = await axios.get('http://localhost:3001/apartments')
-      setApartments(res.data)
-    }
-    catch(err) {
-      console.log(err)
-    }
-  }
-  fetchAllApartments()
-}, [])
 
-//Add logic for onClick filter to each div
-//onClick building div => filter floors, show building info in building info box
-//onClick floor div => filter Apartments, show floor info in floor info box
-//onClick apartment div => filter tenant and show tenant info in tenant info box
+  // Fetch Floor data
+  useEffect(() => {
+    const fetchAllFloors = async () => {
+      try {
+        const res = await axios.get('http://localhost:3001/floors')
+        setFloors(res.data)
+      }
+      catch(err) {
+        console.log(err)
+      }
+    }
+    fetchAllFloors()
+  }, [])
+
+  // Fetch Apartment data
+  useEffect(() => {
+    const fetchAllApartments = async () => {
+      try {
+        const res = await axios.get('http://localhost:3001/apartments')
+        setApartments(res.data)
+      }
+      catch(err) {
+        console.log(err)
+      }
+    }
+    fetchAllApartments()
+  }, [])
+
+  // Fetch Tenant data
+  useEffect(() => {
+    const fetchAllTenants = async () => {
+      try {
+        const res = await axios.get('http://localhost:3001/tenants')
+        setTenants(res.data)
+      }
+      catch(err) {
+        console.log(err)
+      }
+    }
+    fetchAllTenants()
+  }, [])
+
+
+// Handle Clicks
+const handleBuildingClick = (event) => {
+  const selection = event.target.value
+  setSelectedBuilding(selection)
+  event.preventDefault()
+}
+
+const handleFloorClick = (event) => {
+  const selection = event.target.value
+  setSelectedFloor(selection)
+  event.preventDefault()
+}
+
+const handleApartmentClick = (event) => {
+  const selection = event.target.value
+  setSelectedApartment(selection)
+  event.preventDefault()
+}
+
+const handleTenantClick = (event) => {
+  const selection = event.target.value
+  setSelectedTenant(selection)
+  event.preventDefault()
+}
+
+
 
 
   return (
     <div className="mapview">
+
+
+<p>Building {selectedBuilding}</p>
+<p>Floor {selectedFloor}</p>
+<p>Aptt {selectedApartment}</p>
+<p>Tenant {selectedTenant}</p>
+
+
 {/* BUILDINGS*/}
 <div className='largeContainer'>
 Buildings... Start with buildings showing - selecting building populates floors and all tenants
 {buildings.map((building) => (
-    <div className='buildingContainer' key={building.id}>
+    <button className='buildingContainer' key={building.id} value={building.id} onClick={handleBuildingClick}>
       {building.name}
-    </div>
+    </button>
   ))}  
 <div className='infoContainer'>
 Shows info for selected building
 </div>
 
 </div>
-
 {/* FLOORS*/}
 <div className='largeContainer'>
 Floors - select floor populates rooms and filters to floor's tenants
 {floors.map((floor) => (
-    <div className='floorContainer' key={floor.id}>
+    <button className='floorContainer' key={floor.id} value={floor.id} onClick={handleFloorClick}>
       Floor {floor.number}
-    </div>
+    </button>
   ))}  
 <div className='infoContainer'>
 Shows info for selected Floor
@@ -102,9 +140,9 @@ Shows info for selected Floor
 <div className='largeContainer'>
 Apartments - select populates room info and filters to only tenant
 {apartments.map((apartment) => (
-    <div className='apartmentContainer' key={apartment.id}>
+    <button className='apartmentContainer' key={apartment.id} value={apartment.id} onClick={handleApartmentClick}>
       Apartment {apartment.number}
-    </div>
+    </button>
   ))}  
 
 <div className='infoContainer'>
@@ -116,9 +154,9 @@ Shows info for selected Apartment
 <div className='largeContainer'>
 Tenants
 {tenants.map((tenant) => (
-    <div className='tenantContainer' key={tenant.id}>
+    <button className='tenantContainer' key={tenant.id} value={tenant.id} onClick={handleTenantClick}>
       {tenant.name}
-    </div>
+    </button>
   ))}  
 <div className='infoContainer'>
 Shows info for Selected Tenant

@@ -62,13 +62,13 @@ app.get("/tenants", (req,res)=>{
         res.send(result)
     });
 });
-
-// Filter Floors by Building
+// Route to GET Floors by Building
 app.get('/floorsinbuild/:id', (req, res) => {
+    console.log(req.query.id)
     const values = [
-        req.body.id
+        req.params.id
     ]
-    const sql = "SELECT `floorID`, `buildingID`,`floors`.`number`,`buildings`.`name` FROM `building_floor` LEFT OUTER JOIN `floors` ON `building_floor`.`floorID` = `floors`.`id` LEFT OUTER JOIN `buildings` ON `building_floor`.`buildingID` = `buildings`.`id` WHERE `buildings`.`id` = (?)"
+    const sql = "SELECT `floors`.`number`, `floors`.`hasGym`, `floors`.`id`, `floors`.`buildingID` FROM `floors` WHERE `floors`.`buildingID` = (?)"
     db.query(sql, values, (err,result) => {
         if(err) {
             return res.json(err)
@@ -77,6 +77,50 @@ app.get('/floorsinbuild/:id', (req, res) => {
         res.send(result)
     });
 })
+// Route to GET Apt by Floor
+app.get('/aptsonfloor/:id', (req, res) => {
+    console.log(req.query.id)
+    const values = [
+        req.params.id
+    ]
+    const sql = "SELECT `apartments`.`id`, `apartments`.`number`, `apartments`.`buildingID`, `apartments`.`floorID` FROM `apartments` WHERE `apartments`.`floorID` = (?)"
+    db.query(sql, values, (err,result) => {
+        if(err) {
+            return res.json(err)
+         } 
+        // return res.json
+        res.send(result)
+    });
+})
+
+// Route to POST new Apt
+app.post("/newApt/:number/:buildingID/:floorID", (req, res) => {
+    const sql = "INSERT INTO `apartments`(`number`, `buildingID`, `floorID`) VALUES (?)"
+    const values = [
+      req.params.number,
+      req.params.buildingID,
+      req.params.floorID,
+    ]
+    db.query(sql, [values], (err, data) => {
+      if (err) return res.send(err)
+      return res.json(data)
+    })
+  })
+// Route to POST assiging Apt to Tenant
+app.post("/assigntenantapt/:tenant/:apt", (req, res) => {
+    const sql = "INSERT INTO `apt_tenant`(`tenantID`, `aptID`) VALUES = (?)"
+    const values = [
+      req.body.tenant,
+      req.body.apt,
+    ]
+    db.query(sql, [values], (err, data) => {
+      if (err) return res.send(err)
+      return res.json(data)
+    })
+  })
+
+
+
 
 // Insert Room and Assign to Floor, Building
 

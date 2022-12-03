@@ -12,56 +12,34 @@ LEFT OUTER JOIN `apartments`
 	ON `apt_tenant`.`aptID` = `apartments`.`id`
 
 WHERE `apartments`.`number` = #;
-
 --finds tentants by apt
 --useState = selected Apt
 
-SELECT 
-	`floorID`, `buildingID`
-    ,`floors`.`number`
-    ,`buildings`.`name`
 
-FROM `building_floor`
-
-LEFT OUTER JOIN `floors`
-	ON `building_floor`.`floorID` = `floors`.`id`
-    
-LEFT OUTER JOIN `buildings`
-	ON `building_floor`.`buildingID` = `buildings`.`id`
-
-WHERE `buildings`.`id` = (?)
-
---find floors by buildingID
---useState = selected building
-
-SELECT 
-	`floorID`, `aptID`
-    ,`floor`.`number`
-    ,`apartments`.`number`
-
-FROM `floor_apt`
-
-LEFT OUTER JOIN `floors`
-	ON `building_floor`.`floorID` = `floors`.`id`
-    
-LEFT OUTER JOIN `apartments`
-	ON `floor_apt`.`aptID` = `apartments`.`id`
-
-WHERE `floorID`.`number` = #
-
---find apt by floor
---useState = selected floor
+SELECT `floors`.`number`, `floors`.`hasGym`, `floors`.`id`, `floors`.`buildingID`
+FROM `floors`
+WHERE `floors`.`buildingID` = (?)
+--finds floor by building
+--useState = selected buildingID
 
 
-INSERT INTO `apt_tenant`(`aptID`, `tenantID`) VALUES ('SELECTED TENANT','SELECTED APT')
+SELECT `apartments`.`id`, `apartments`.`number`, `apartments`.`buildingID`, `apartments`.`floorID`
+FROM `apartments`
+WHERE `apartments`.`floorID` = (?)
+--finds apt by floor
+--useState = selected floorID
+
+
+INSERT INTO `apt_tenant`(`aptID`, `tenantID`) VALUES ((?),(?))
 --assign tenant to apt
+--useState = selected tenantID
+--useState = selected aptID
 
-INSERT INTO `apartments`(`number`) VALUES ('INPUT')
-SELECT MAX (id) FROM `apartments`
-
-
-
---create new apt 
+INSERT INTO `apartments`(`number`, `buildingID`, `floorID`) VALUES ('[value-1]','[value-2]','[value-3]')
+--create tenant to apt, floor, room
+--useState = selected aptID
+--useState = selected floorID
+--useState = selected buildingID
 
 
 
