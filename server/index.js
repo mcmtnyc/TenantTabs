@@ -92,6 +92,21 @@ app.get('/aptsonfloor/:id', (req, res) => {
         res.send(result)
     });
 })
+// Route to GET Tenant by Apt
+app.get('/tenantsinapt/:id', (req, res) => {
+    console.log(req.query.id)
+    const values = [
+        req.params.id
+    ]
+    const sql = "SELECT `aptID`, `tenantID`,`tenants`.`name`,`apartments`.`number` FROM `apt_tenant` LEFT OUTER JOIN `tenants` ON `apt_tenant`.`tenantID` = `tenants`.`id` LEFT OUTER JOIN `apartments` ON `apt_tenant`.`aptID` = `apartments`.`id` WHERE `apt_tenant`.`aptID` = (?)"
+    db.query(sql, values, (err,result) => {
+        if(err) {
+            return res.json(err)
+         } 
+        // return res.json
+        res.send(result)
+    });
+})
 
 // Route to POST new Apt
 app.post("/newApt/:number/:buildingID/:floorID", (req, res) => {

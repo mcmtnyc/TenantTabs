@@ -11,7 +11,7 @@ LEFT OUTER JOIN `tenants`
 LEFT OUTER JOIN `apartments`
 	ON `apt_tenant`.`aptID` = `apartments`.`id`
 
-WHERE `apartments`.`number` = #;
+WHERE `apartments`.`id` = #;
 --finds tentants by apt
 --useState = selected Apt
 
