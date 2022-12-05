@@ -1,4 +1,4 @@
-import './App.css';
+import './Login.css';
 
 
 function Login() {
@@ -9,13 +9,11 @@ function Login() {
 <form>
   <label>
   Property Manager Login
-    <input type="text" name="username" />
-    <input type="password" name="password" />
+    <input type="text" name="username" placeholder="Username" />
+    <input type="password" name="password" placeholder="Password"/>
   </label>
   <input type="submit" value="Submit" />
 </form>
-
-
 
     </div>
   );
