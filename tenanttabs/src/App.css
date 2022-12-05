@@ -2,6 +2,106 @@
   border: solid black;
 }
 
+.menuContainer {
+  color: white;
+  background-color: #0D67B5;
+  width: 15%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.rightContainer {
+  background-color: #D9D9D9;
+  width: 85%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: -1
+}
+
+.fileBG {
+  background-color: #F9F7F7;
+  width: 90%;
+  height: 85%;
+  z-index: 0;
+  position: absolute;
+  top: 12%;
+  left: 5%;
+  filter: drop-shadow(8px 8px 4px grey);
+}
+
 .infoContainer {
-  border: solid red;
+  z-index: 3;
+  padding: 20px;
+}
+
+.fileTabNameContainer1 {
+  background-color: #F9F7F7;
+  width: 25%;
+  height: 20%;
+  border-radius: 10px;
+  position: absolute;
+  top: 3%;
+  left: 5%;
+  padding: 5px 10px 5px 15px;
+  filter: drop-shadow(8px 8px 4px grey);
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.fileTabNameContainer2 {
+  background-color: #F9F7F7;
+  width: 25%;
+  height: 20%;
+  border-radius: 10px;
+  position: absolute;
+  top: 3%;
+  left: 30.5%;
+  padding: 5px 10px 5px 15px;
+  filter: drop-shadow(8px 8px 4px grey);
+  box-shadow: 0 0px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.fileTabNameContainer3 {
+  background-color: #F9F7F7;
+  width: 10%;
+  height: 20%;
+  border-radius: 10px;
+  position: absolute;
+  top: 3%;
+  left: 56%;
+  padding: 5px 10px 5px 15px;
+  filter: drop-shadow(8px 8px 4px grey);
+  box-shadow: 0 0px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.fileTabNameContainer4 {
+  background-color: #F9F7F7;
+  width: 10%;
+  height: 20%;
+  border-radius: 10px;
+  position: absolute;
+  top: 3%;
+  left: 66.5%;
+  padding: 5px 10px 5px 15px;
+  filter: drop-shadow(8px 8px 4px grey);
+  box-shadow: 0 0px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.fileTabNameContainer5 {
+  background-color: #F9F7F7;
+  width: 10%;
+  height: 20%;
+  border-radius: 10px;
+  position: absolute;
+  top: 3%;
+  left: 77%;
+  padding: 5px 10px 5px 15px;
+  filter: drop-shadow(8px 8px 4px grey);
+  box-shadow: 0 0px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+h1 {
+  font-size: 25pt;
 }

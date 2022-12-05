@@ -1,0 +1,10 @@
+.largeContainer {
+    width: 25%;
+    height: 80vh;
+    overflow: scroll;
+}
+
+.flexContainer {
+    display: flex;
+    flex-direction: row;
+}

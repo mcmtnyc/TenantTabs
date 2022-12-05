@@ -10,15 +10,68 @@ import AddApt from "./AddApt";
 import TenantManage from "./TenantManage";
 
 function App() {
-  
+const [isLoggedIn, setIsLoggedIn] = useState([true])
+const [selectTM, setSelectTM] = useState([false])
+const [selectPO, setSelectPO] = useState([false])
+
+
+// Handle picking tab menu item to coniditonally render component into infoContainer
+// Need to figure out how to conditionally render
+
+const handlePOTabClick = (event) => {
+  setSelectPO([true])
+  event.preventDefault()
+}
+const handleTMTabClick = (event) => {
+  setSelectTM([true])
+  event.preventDefault()
+}
+
+
   return (
     <div className="App">
+      <div className="menuContainer">
+        <div className="profilePic">
 
-      <Login/>
-      <AddApt/>
-      <TenantManage/>
+        </div>
+          <div className="navContainer">
+          <Login/>
+          </div>
+        </div>
+
+      <div className="rightContainer">
+
+        <div className="fileTabNameContainer1" onClick={handlePOTabClick}>
+            <h1 className="tabName">Property Overview</h1>
+        </div>
+
+        <div className="fileTabNameContainer2" onClick={handleTMTabClick}>
+          <h1 className="tabName">Tenant Manage</h1>
+        </div>
+
+        <div className="fileTabNameContainer3">
+          <h1 className="tabName">Icon</h1>
+        </div>
+
+        <div className="fileTabNameContainer4">
+          <h1 className="tabName">Icon</h1>
+        </div>
+
+        <div className="fileTabNameContainer5">
+          <h1 className="tabName">Icon</h1>
+        </div>
+
+        <div className="fileBG">
+          <div className="infoContainer">
+          <MapView/>
+          </div>
+        </div>
+
+      </div>
+
+
       <br/>
-      <MapView/>
+      
       <br/>
 
     </div>

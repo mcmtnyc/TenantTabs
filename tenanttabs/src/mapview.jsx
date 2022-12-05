@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import cors from 'cors'
-import './App.css';
+import './MapView.css';
 
 
 function MapView() {
@@ -148,16 +148,10 @@ const handleTenantClick = (event) => {
   return (
     <div className="mapview">
 
-
-<p>Building {selectedBuilding}</p>
-<p>Floor {selectedFloor}</p>
-<p>Apt {selectedApartment}</p>
-<p>Tenant {selectedTenant}</p>
-
-
+<div className="flexContainer">
 {/* BUILDINGS*/}
 <div className='largeContainer'>
-Buildings... Start with buildings showing - selecting building populates floors and all tenants
+<p>Building {selectedBuilding}</p>
 {buildings.map((building) => (
     <button className='buildingContainer' key={building.id} value={building.id} onClick={handleBuildingClick}>
       {building.name} | SQFT {building.sqft} | BuildingID {building.id}
@@ -167,7 +161,7 @@ Buildings... Start with buildings showing - selecting building populates floors 
 
 {/* FLOORS*/}
 <div className='largeContainer'>
-Floors - select floor populates rooms and filters to floor's tenants
+<p>Floor {selectedFloor}</p>
 {floors.map((floor) => (
     <button className='floorContainer' key={floor.id} value={floor.id} onClick={handleFloorClick}>
       Floor {floor.number} | hasGym = {floor.hasGym} | FloorID {floor.id}
@@ -177,7 +171,7 @@ Floors - select floor populates rooms and filters to floor's tenants
 
 {/* APARTMENTS*/}
 <div className='largeContainer'>
-Apartments - select populates room info and filters to only tenant
+<p>Apt {selectedApartment}</p>
 {apartments.map((apartment) => (
     <button className='apartmentContainer' key={apartment.id} value={apartment.id} onClick={handleApartmentClick}>
       Apartment {apartment.number} | ApartmentID {apartment.id}
@@ -187,7 +181,7 @@ Apartments - select populates room info and filters to only tenant
 
 {/* TENANTS*/}
 <div className='largeContainer'>
-Tenants
+<p>Tenant {selectedTenant}</p>
 {tenants.map((tenant) => (
     <button className='tenantContainer' key={tenant.id} value={tenant.id} onClick={handleTenantClick}>
       {tenant.name} | TenantID {tenant.id}
@@ -196,7 +190,7 @@ Tenants
 </div>
 
 
-
+</div>
     </div>
   );
 }
