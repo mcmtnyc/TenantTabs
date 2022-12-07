@@ -1,3 +1,13 @@
+.Home {
+  background-color: #0D67B5;
+  width: 100vw;
+  height: 100vh;
+}
+.logoContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
 .largeContainer {
   border: solid black;
 }
@@ -10,6 +20,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: -1;
 }
 
 .rightContainer {

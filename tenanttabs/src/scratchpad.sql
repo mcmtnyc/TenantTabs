@@ -46,3 +46,13 @@ INSERT INTO `apartments`(`number`, `buildingID`, `floorID`) VALUES ('[value-1]',
 
 
 
+
+SELECT `apartments`.`number`, `apartments`.`id`, `floors`.`number`, `buildings`.`name`
+
+FROM `apartments`
+
+LEFT OUTER JOIN `floors`
+	ON `apartments`.`floorID` = `floors`.`id`
+    
+LEFT OUTER JOIN `buildings`
+	ON `floors`.`buildingID` = `buildings`.`id`

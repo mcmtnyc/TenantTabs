@@ -100,7 +100,7 @@ const [selectedBuilding, setSelectedBuilding] = useState([])
     fetchFilteredApartments()
   }, [selectedFloor])
 
-  // Fetch Filtered Tenant data NOT WORKING!!!!!!!!!!!!!
+  // Fetch Filtered Tenant data
   useEffect(() => {
     const fetchFilteredTenants = async () => {
       try {

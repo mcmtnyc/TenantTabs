@@ -99,7 +99,7 @@ const handleSubmit= async (event) => {
     <select name="apartments" onChange= {(e) => handleApartment(e)}>
     <option value="" disabled selected hidden>Choose an Apartment</option>
       {apartments.map((apartment) =>
-      <option key={apartment.id} value={apartment.id}>Apt {apartment.number} | Floor {apartment.floorID} | Building {apartment.buildingID}</option>
+      <option key={apartment.id} value={apartment.id}>Apt {apartment._apartmentNumber} | Floor {apartment.number} | {apartment.name}</option>
       )}
       {/*Populate options from buildings, set value to selected Building*/}
     </select>

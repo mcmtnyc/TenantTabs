@@ -28,7 +28,8 @@ app.listen(PORT, () => {
 
 // Route to GET all apartments
 app.get("/apartments", (req,res)=>{
-    db.query("SELECT * FROM apartments", (err,result) => {
+    const sql = "SELECT `apartments`.`number` AS `_apartmentNumber`, `apartments`.`id`, `floors`.`number`, `buildings`.`name` FROM `apartments` LEFT OUTER JOIN `floors` ON `apartments`.`floorID` = `floors`.`id` LEFT OUTER JOIN `buildings` ON `floors`.`buildingID` = `buildings`.`id`"
+    db.query(sql, (err,result) => {
         if(err) {
              console.log(err)
          } 
@@ -123,10 +124,10 @@ app.post("/newApt/:number/:buildingID/:floorID", (req, res) => {
   })
 // Route to POST assiging Apt to Tenant
 app.post("/assigntenantapt/:tenant/:apt", (req, res) => {
-    const sql = "INSERT INTO `apt_tenant`(`tenantID`, `aptID`) VALUES = (?)"
+    const sql = "INSERT INTO `apt_tenant`(`tenantID`, `aptID`) VALUES (?)"
     const values = [
-      req.body.tenant,
-      req.body.apt,
+      req.params.tenant,
+      req.params.apt,
     ]
     db.query(sql, [values], (err, data) => {
       if (err) return res.send(err)
@@ -134,6 +135,39 @@ app.post("/assigntenantapt/:tenant/:apt", (req, res) => {
     })
   })
 
+  // Register and Login
+  app.post('/register', (req, res) => {
+    console.log(req.body)
+    const sql = "INSERT INTO `users` (`username`, `password`) VALUES (?)"
+    const values = [
+        req.body.username,
+        req.body.password,
+    ]
+    db.query(sql, [values], (err, data) => {
+        if (err) return res.send(err)
+        return res.json(data)
+    })
+  })
+  app.post('/login', (req, res) => {
+    const username = req.body.username
+    const password = req.body.password
+    console.log(username, password)
+    db.query(
+        "SELECT * FROM users WHERE username = ? AND password = ?",
+        [username, password],
+        (err, result)=> {
+            if (err) {
+                res.send({err: err});
+                console.log(err)
+            }
+    
+            if (result.length > 0) {
+                res.send("Success")
+                }else({message: "Wrong username/password comination!"});
+            }
+        )
+    })
+    
 
 
 
