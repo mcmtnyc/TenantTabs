@@ -79,7 +79,7 @@ const handleSubmit= async (event) => {
   }
 
 
-  return (<div>
+  return (<div className='infoContainer'>
     <form onSubmit={handleSubmit}>
     {/* Add Apt by selecting Building and Floor */}
     <label>

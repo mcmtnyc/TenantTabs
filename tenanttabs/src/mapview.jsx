@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios'
-import cors from 'cors'
 import './MapView.css';
 
 
@@ -123,35 +122,29 @@ const handleBuildingClick = (event) => {
   /// How to disable other unselected buildings???????????????
   event.preventDefault()
 }
-
 const handleFloorClick = (event) => {
   const selection = event.target.value
   setSelectedFloor(selection)
   event.preventDefault()
 }
-
 const handleApartmentClick = (event) => {
   const selection = event.target.value
   setSelectedApartment(selection)
   event.preventDefault()
 }
-
 const handleTenantClick = (event) => {
   const selection = event.target.value
   setSelectedTenant(selection)
   event.preventDefault()
 }
 
-
-
-
   return (
-    <div className="mapview">
+    <div className="infoContainer">
 
 <div className="flexContainer">
 {/* BUILDINGS*/}
 <div className='largeContainer'>
-<p>Building {selectedBuilding}</p>
+<p> BuildingID {selectedBuilding}</p>
 {buildings.map((building) => (
     <button className='buildingContainer' key={building.id} value={building.id} onClick={handleBuildingClick}>
       {building.name} | SQFT {building.sqft} | BuildingID {building.id}
@@ -161,7 +154,7 @@ const handleTenantClick = (event) => {
 
 {/* FLOORS*/}
 <div className='largeContainer'>
-<p>Floor {selectedFloor}</p>
+<p> FloorID {selectedFloor}</p>
 {floors.map((floor) => (
     <button className='floorContainer' key={floor.id} value={floor.id} onClick={handleFloorClick}>
       Floor {floor.number} | hasGym = {floor.hasGym} | FloorID {floor.id}
@@ -171,7 +164,7 @@ const handleTenantClick = (event) => {
 
 {/* APARTMENTS*/}
 <div className='largeContainer'>
-<p>Apt {selectedApartment}</p>
+<p> AptID {selectedApartment}</p>
 {apartments.map((apartment) => (
     <button className='apartmentContainer' key={apartment.id} value={apartment.id} onClick={handleApartmentClick}>
       Apartment {apartment.number} | ApartmentID {apartment.id}
@@ -181,7 +174,7 @@ const handleTenantClick = (event) => {
 
 {/* TENANTS*/}
 <div className='largeContainer'>
-<p>Tenant {selectedTenant}</p>
+<p> TenantID {selectedTenant}</p>
 {tenants.map((tenant) => (
     <button className='tenantContainer' key={tenant.id} value={tenant.id} onClick={handleTenantClick}>
       {tenant.name} | TenantID {tenant.id}

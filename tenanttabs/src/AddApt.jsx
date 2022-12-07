@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
+import TenantManage from './TenantManage';
 
 function AddApt() {
 
@@ -89,7 +90,8 @@ const handleSubmit= async (event) => {
 
 // Create Apt
 
-    return (<div>
+    return (
+    <div className='infoContainer'>
         <form onSubmit={handleSubmit}>
         {/* Add Apt by selecting Building and Floor */}
         <label>
@@ -117,7 +119,7 @@ const handleSubmit= async (event) => {
         <input type="text" name="apartment" disabled={disableInput} placeholder='Input Apt' value={aptNumber} onChange= {(e) => setAptNumber(e.target.value)}/>
         <input type="submit" disabled={!disableSubmit} onSubmit={handleSubmit}/>
         </form>
-        
+      
         </div>)
         }
         
