@@ -140,46 +140,83 @@ const handleTenantClick = (event) => {
 
   return (
     <div className="infoContainer">
-
+<div className='directionsContainer'>
+  <p>Select Boxes to filter info display~</p>
+  <button className='filterOptions'>Filter Options</button>
+</div>
 <div className="flexContainer">
 {/* BUILDINGS*/}
 <div className='largeContainer'>
-<p> BuildingID {selectedBuilding}</p>
+  <div className='infoBox'>
+<p> Selected BuildingID {selectedBuilding}</p>
+<p>Info:</p>
+<p>Info: </p>
+<p>Info: </p>
+<center><button className='customizeView'>Customize View</button></center>
+</div>
+<center>
 {buildings.map((building) => (
     <button className='buildingContainer' key={building.id} value={building.id} onClick={handleBuildingClick}>
       {building.name} | SQFT {building.sqft} | BuildingID {building.id}
     </button>
   ))}  
+  </center>
 </div>
 
 {/* FLOORS*/}
 <div className='largeContainer'>
-<p> FloorID {selectedFloor}</p>
+<div className='infoBox'>
+<p> Selected FloorID {selectedFloor}</p>
+<p>Info:</p>
+<p>Info: </p>
+<p>Info: </p>
+<center><button className='customizeView'>Customize View</button></center>
+</div>
+<center>
 {floors.map((floor) => (
     <button className='floorContainer' key={floor.id} value={floor.id} onClick={handleFloorClick}>
       Floor {floor.number} | hasGym = {floor.hasGym} | FloorID {floor.id}
     </button>
-  ))}  
+  ))} 
+</center>
 </div>
 
 {/* APARTMENTS*/}
+
 <div className='largeContainer'>
-<p> AptID {selectedApartment}</p>
+<div className='infoBox'>
+<p> Selected AptID {selectedApartment}</p>
+<p>Info:</p>
+<p>Info: </p>
+<p>Info: </p>
+<center><button className='customizeView'>Customize View</button></center>
+</div>
+<center>
 {apartments.map((apartment) => (
     <button className='apartmentContainer' key={apartment.id} value={apartment.id} onClick={handleApartmentClick}>
       Apartment {apartment.number} | ApartmentID {apartment.id}
     </button>
   ))}  
+  </center>
 </div>
 
 {/* TENANTS*/}
+
 <div className='largeContainer'>
-<p> TenantID {selectedTenant}</p>
+<div className='infoBox'>
+<p> Selected TenantID {selectedTenant}</p>
+<p>Info:</p>
+<p>Info: </p>
+<p>Info: </p>
+<center><button className='customizeView'>Customize View</button></center>
+</div>
+<center>
 {tenants.map((tenant) => (
     <button className='tenantContainer' key={tenant.id} value={tenant.id} onClick={handleTenantClick}>
       {tenant.name} | TenantID {tenant.id}
     </button>
   ))}  
+</center>
 </div>
 
 

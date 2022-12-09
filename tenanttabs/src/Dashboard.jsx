@@ -56,11 +56,14 @@ else if (selectAA === true){
         <div className="navContainer">
           <h3>UserName</h3>
           <h4>Property Manager</h4>
-            <p>Tasks</p>
-            <p>Work Orders</p>
-            <p>Calendars</p>
-            <p>Financials</p>
-            <p>Staff Time Sheets</p>
+            <p className='menuText'>Tasks</p>
+            <p className='menuText'>Work Orders</p>
+            <p className='menuText'>Calendars</p>
+            <p className='menuText'>Financials</p>
+            <p className='menuText'>Staff Time Sheets</p>
+            <br/>
+            <br/>
+            <br/>
         </div>
         <button>Log Out</button>
         </center>

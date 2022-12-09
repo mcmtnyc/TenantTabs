@@ -8,7 +8,7 @@ function TenantManage() {
     const [selectedTenant, setSelectedTenant] = useState([])
     const [apartments, setApartments] = useState([])
     const [selectedApartment, setSelectedApartment] = useState([])
-    const [disableSubmit, setDisableSubmit] = useState([true])
+    const [disableSubmit, setDisableSubmit] = useState(true)
 
 // Fetch Tenant data
 useEffect(() => {
@@ -51,17 +51,16 @@ useEffect(() => {
     event.preventDefault()
   } 
 
-// Check that Tenant and Apartment are
+// Check that Tenant and Apartment are not null
 const validate = () => {
-    return selectedTenant.length & selectedApartment.length
+    return (!(selectedTenant.length === 0) && !(selectedApartment.length === 0))
   }
   
 // Enable submit
   useEffect(() => {
     const disableSubmit = validate()
+    console.log(disableSubmit)
     setDisableSubmit(disableSubmit)
-    console.log({selectedTenant})
-    console.log({selectedApartment})
   }, [selectedTenant, selectedApartment])
 
 //Handle Submit
@@ -80,13 +79,14 @@ const handleSubmit= async (event) => {
 
 
   return (<div className='infoContainer'>
+<h1>Assign Tenants to Apartments</h1>
+    
+ <p>Select a Tenant</p>
     <form onSubmit={handleSubmit}>
     {/* Add Apt by selecting Building and Floor */}
-    <label>
-    Assign Tenants to Apartments
-    </label>
 
-    {/* select Building */}
+
+    {/* select Tenant */}
     <select name="tenants" onChange= {(e) => handleTenant(e)}>
     <option value="" disabled selected hidden>Choose a Tenant</option>
       {tenants.map((tenant) =>
@@ -94,7 +94,7 @@ const handleSubmit= async (event) => {
       )}
       {/*Populate options from buildings, set value to selected Building*/}
     </select>
-
+    <p>Select an Apartment</p>
     {/* select Floor */}
     <select name="apartments" onChange= {(e) => handleApartment(e)}>
     <option value="" disabled selected hidden>Choose an Apartment</option>
@@ -104,7 +104,7 @@ const handleSubmit= async (event) => {
       {/*Populate options from buildings, set value to selected Building*/}
     </select>
 
-    <input type="submit" disabled={!disableSubmit} onSubmit={handleSubmit}/>
+    <input type="submit" value="Assign" disabled={!disableSubmit} onSubmit={handleSubmit}/>
     </form>
     
     </div>)

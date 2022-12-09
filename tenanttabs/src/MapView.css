@@ -1,6 +1,7 @@
 .largeContainer {
-    width: 18vw;
-    height: 80vh;
+    padding: 3px;
+    width: 17.5vw;
+    height: 75vh;
     overflow: scroll;
 }
 
@@ -11,3 +12,24 @@
 p {
     padding: 0px 0px 0px 20px;
 }
+
+.infoBox {
+    font-size: 12pt;
+    margin: 5px;
+    border: 1px solid black;
+  }
+
+  .customizeView {
+    font-size: 6pt;
+    
+  }
+  button {
+    padding: 5px;
+    margin: 3px;
+    font-family: Tahoma;
+  }
+.filterOptions {
+    position: absolute;
+    right: 2%;
+    top: 3%;
+  }
