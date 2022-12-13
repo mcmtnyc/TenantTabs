@@ -10,8 +10,8 @@ function AddApt() {
   const [selectedBuilding, setSelectedBuilding] = useState([])
   const [filteredFloors, setFilteredFloors] = useState([])
   const [selectedFloor, setSelectedFloor] = useState([])
-  const [disableInput, setDisableInput] = useState(true)
-  const [disableSubmit, setDisableSubmit] = useState(true)
+  const [disableInput, setDisableInput] = useState([true])
+  const [disableSubmit, setDisableSubmit] = useState([true])
   const [aptNumber, setAptNumber] = useState([])
 
 // Fetch Building data
@@ -61,13 +61,15 @@ const handleFloor= (event) => {
 
 // Check that Floor is selected and aptNumber is unput
 const validate = () => {
-  return (!(selectedFloor.length === 0) && !(aptNumber.length === 0))
+  return (selectedFloor.length != 0) && (aptNumber.length != 0)
 }
 
 // Enable submit
 useEffect(() => {
   const disableSubmit = validate()
   setDisableSubmit(disableSubmit)
+  console.log({selectedFloor})
+  console.log({selectedBuilding})
 }, [selectedFloor, aptNumber])
 
 // Handle submit
@@ -91,13 +93,13 @@ const handleSubmit= async (event) => {
     return (
     <div className='infoContainer'>
         <h1>Add an Apt</h1>
-       
-        <p>Select Building</p>
         <form onSubmit={handleSubmit}>
         {/* Add Apt by selecting Building and Floor */}
 
-
         {/* select Building */}
+        <label>
+        Select a Building
+        </label>
         <select name="buildings" onChange= {(e) => handleBuilding(e)}>
         <option value="" disabled selected hidden>Choose a Building</option>
           {buildings.map((buildings) =>
@@ -105,8 +107,11 @@ const handleSubmit= async (event) => {
           )}
           {/*Populate options from buildings, set value to selected Building*/}
         </select>
-        <p>Select Floor</p>
+
         {/* select Floor */}
+        <label>
+        Select a Floor
+        </label>
         <select name="floors" onChange= {(e) => handleFloor(e)}>
         <option value="" disabled selected hidden>Choose a Floor</option>
           {filteredFloors.map((floor) =>
@@ -114,9 +119,11 @@ const handleSubmit= async (event) => {
           )}
           {/*Populate options from buildings, set value to selected Building*/}
         </select>
-        <p>Enter New Apartment #</p>
+        <label>
+        Type Apt Letter/Number
+        </label>
         <input type="text" name="apartment" disabled={disableInput} placeholder='Input Apt' value={aptNumber} onChange= {(e) => setAptNumber(e.target.value)}/>
-        <input type="submit" value="Add Apt" disabled={!disableSubmit} onSubmit={handleSubmit}/>
+        <input type="submit" disabled={!disableSubmit} onSubmit={handleSubmit}/>
         </form>
       
         </div>)

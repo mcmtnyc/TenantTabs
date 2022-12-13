@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+
 import './Login.css';
 import logo from './assets/images/logo.png'
 import PropTypes from 'prop-types'
@@ -38,8 +39,7 @@ const Login = ({updateLogin}) =>  {
     })
   }
   
-  return (<div className='mainLogin'>
-  <center>
+  return (
     <div className="Login">
       <img src={logo} className="logo"></img>
 <div className='loginContainer'>
@@ -58,11 +58,9 @@ const Login = ({updateLogin}) =>  {
     <input type="text" name="username" placeholder="Username" onChange={e => setUsername(e.target.value)}/>
     <input type="password" name="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
   </label>
-<input type="submit" value="Submit" onClick={login} />
+  <input type="submit" value="Submit" onClick={login} />
 </form>
     </div>
-  </div>
-  </center>
   </div>
   );
 }

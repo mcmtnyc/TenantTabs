@@ -65,7 +65,7 @@ app.get("/tenants", (req,res)=>{
 });
 // Route to GET Floors by Building
 app.get('/floorsinbuild/:id', (req, res) => {
-    console.log(req.query.id)
+    console.log('floorsinbuilding ' + req.params.id)
     const values = [
         req.params.id
     ]
@@ -99,7 +99,8 @@ app.get('/tenantsinapt/:id', (req, res) => {
     const values = [
         req.params.id
     ]
-    const sql = "SELECT `aptID`, `tenantID`,`tenants`.`name`,`apartments`.`number` FROM `apt_tenant` LEFT OUTER JOIN `tenants` ON `apt_tenant`.`tenantID` = `tenants`.`id` LEFT OUTER JOIN `apartments` ON `apt_tenant`.`aptID` = `apartments`.`id` WHERE `apt_tenant`.`aptID` = (?)"
+    // alias from `tenantID` to id as the consumer of this dataset expects to get id as tenant id.
+    const sql = "SELECT `aptID`, `tenantID` as id,`tenants`.`name`,`apartments`.`number` FROM `apt_tenant` LEFT OUTER JOIN `tenants` ON `apt_tenant`.`tenantID` = `tenants`.`id` LEFT OUTER JOIN `apartments` ON `apt_tenant`.`aptID` = `apartments`.`id` WHERE `apt_tenant`.`aptID` = (?)"
     db.query(sql, values, (err,result) => {
         if(err) {
             return res.json(err)
